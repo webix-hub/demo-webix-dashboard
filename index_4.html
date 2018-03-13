@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- webix files -->
+		<link rel="stylesheet" href="https://cdn.webix.com/site/webix.css" type="text/css" charset="utf-8">
+		<script src="https://cdn.webix.com/site/webix.js" type="text/javascript" charset="utf-8"></script>
+
+		<!-- my styles -->
+		<link rel="stylesheet" href="skins/berry_blues.css" title="berryblues" type="text/css" charset="utf-8">
+		<link rel="stylesheet" href="skins/cozy_evening.css" title="cozyevening" type="text/css" charset="utf-8">
+		<link rel="stylesheet" href="templates.css" type="text/css" charset="utf-8">
+
+		<!-- data -->
+		<script src="data/data.js" type="text/javascript" charset="utf-8"></script>
+		<!-- factories for panels -->
+		<script src="helpers/factories.js" ></script>
+		<!-- function for toggling themes -->
+		<script src="helpers/themes.js"></script>
+
+		<title>Grid Dashboard - Article</title>
+	</head>
+	<body>
+		<script type="text/javascript" charset="utf-8">
+
+			//functions for creating panels are taken from "helpers/factories.js"
+			function panelFactory(obj){
+				// common panel structure
+				obj.view = "panel";
+				obj.icon = "times";
+
+				switch (obj.name){
+					case "visitors_template":
+						return createVisitorsTemplate(obj);
+					case "sales_template":
+						return createSalesTemplate(obj);
+					case "new_visitors_template":
+						return createNewVisTemplate(obj);
+					case "active_visitors_template":
+						return createActiveVisTemplate(obj);
+					case "something_else_template":
+						return createElseTemplate(obj);
+					case "sales_pie_chart":
+						return createAreaPieChart(obj);
+					case "visitors_spline_chart":
+						return createPopSplineArChart(obj);
+					case "visitors_bar_chart":
+						return createPopBarChart(obj);
+					case "countries_geochart":
+						return createGeochart(obj);
+					case "network_usage_gage":
+						return createNetworkGage(obj);
+					case "countries_list":
+						return createList(obj);
+					case "countries_datatable":
+						return createDatatable(obj);
+				}
+			};
+
+			var grid = {
+				view:"dashboard", id:"grid",
+				gridColumns:7, gridRows:5,
+				padding:18, margin:18,
+				factory:panelFactory,
+				on:{
+					onChange:function(){
+						var state = this.serialize();
+						webix.storage.local.put("dashboard-state", state);
+					}
+				}
+			};
+
+			var widgets = {
+				type:"clean", rows:[
+					{
+						type:"header", 
+						template:"Drag widgets from here",
+					},
+					{
+						view:"list", id:"list", select:true,
+						width:250,
+						drag:"source", scroll:false,
+						template:"#value# (#dx#x#dy#)",
+						data:[
+							{ id:"visitors_template", value:"Visitors Template", dx:1, dy:1 },
+							{ id:"sales_template", value:"Sales Template", dx:1, dy:1 },
+							{ id:"new_visitors_template", value:"New Visitors Template", dx:1, dy:1 },
+							{ id:"active_visitors_template", value:"Active Visitors Template", dx:1, dy:1 },
+							{ id:"something_else_template", value:"Something Else Template", dx:1, dy:1 },
+							{ id:"sales_pie_chart", value:"Sales Pie Chart", dx:2, dy:2 },
+							{ id:"visitors_spline_chart", value:"Visitors Spline Sales Chart", dx:3, dy:2 },
+							{ id:"visitors_bar_chart", value:"Visitors Bar Chart", dx:3, dy:2 },
+							{ id:"countries_geochart", value:"Sales GeoChart", dx:2, dy:2 },
+							{ id:"network_usage_gage", value:"Network Usage Gage", dx:2, dy:2 },
+							{ id:"countries_list", value:"Countries List", dx:1, dy:2 },
+							{ id:"countries_datatable", value:"Countries Datatable", dx:2, dy:2 }
+						]
+					},
+					{
+						view:"button", value:"Reset",
+						click:function(){
+							$$("grid").clearAll();
+						}
+					}
+				]
+			};
+
+			var toolbar = {
+				view:"toolbar", elements:[
+					{ view:"label", template:"<a href='https://webix.com' target='_blank'>Webix Dashboard</a>"},
+					{},
+					{ view:"segmented", id:"themes", width:200, value:"berryblues", options:[
+						{id:"berryblues", value:"Berry Blues"},
+						{id:"cozyevening", value:"Cozy Evening"}
+					], click:function(){
+						var theme = this.getValue();
+						setTheme(theme);
+					} }
+				]
+			};
+
+			webix.ready(function(){
+				webix.ui({
+					id:"ui", cols:[
+						widgets,
+						{
+							type:"clean", rows:[
+								toolbar,
+								grid
+							]
+						}
+					]
+				});
+
+				//restoring the state of the grid
+				var state = webix.storage.local.get("dashboard-state");
+				if (state)
+					$$("grid").restore(state);
+
+				//setting the theme
+				var skin = $$("themes").getValue();
+				setTheme(skin);
+
+				//removing panels on icon click
+				webix.event(document.body, "click", function(ev){
+					var css = ev.target.className;
+					//if the target is a panel icon, show the confirmation window
+					if (css && css.toString().indexOf("panel_icon") != -1){
+						var view = webix.$$(ev.target);
+						console.log(view);
+						webix.confirm({
+							title:"Remove Panel",
+							ok:"Yes", 
+							cancel:"No",
+							text:"Are you sure?",
+							callback:function(result){
+								if (result)
+									view.getParentView().removeView(view);
+							}
+						});
+					}
+				});
+
+			});
+		</script>
+   	</body>
+</html>
