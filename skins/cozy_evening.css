@@ -1,0 +1,78 @@
+/* vilet sunset */
+
+/* dashboard and panels */
+.webix_header > div{
+    background-color:#363237;
+    color:#f7e29c;
+}
+.webix_abslayout {
+    background-color:#363237;
+}
+.panel_drag_view{
+    border-radius:2px;
+    box-shadow: 0px 0px 10px #000;
+}
+.webix_view.webix_abslayout .webix_view.webix_layout_line .webix_header > div{
+    background-color: #2d4262;
+    color:#f7e29c;
+}
+.panel_icon{
+    color:#f7e29c;
+}
+.panel_target{
+    background: #f7e29cab;
+    box-shadow: 0px 0px 20px 5px #f7e29cab;
+}
+
+/* toolbar */
+.webix_toolbar.webix_layout_toolbar{
+    background-color:#4b4345;
+    border-color:#4b4345;
+}
+.webix_toolbar.webix_layout_toolbar .webix_el_label > a{
+    color:#f7e29c;
+    text-decoration:none;
+}
+.webix_toolbar.webix_layout_toolbar .webix_el_label > a:hover{
+    text-decoration:none;
+    font-weight:bold;
+}
+.webix_toolbar.webix_layout_toolbar .webix_el_label > a:active{
+    color:rgba(250,250,250,0.4);
+}
+.webix_toolbar.webix_layout_toolbar .webix_segment_0.webix_selected, .webix_toolbar.webix_layout_toolbar .webix_segment_N.webix_selected{
+    background:#2d4262;
+}
+.webix_toolbar.webix_layout_toolbar .webix_segment_0.webix_selected:hover, .webix_toolbar.webix_layout_toolbar .webix_segment_N.webix_selected:hover{
+    background:#2d4262;
+}
+.webix_toolbar.webix_layout_toolbar .webix_segment_0.webix_selected:focus, .webix_toolbar.webix_layout_toolbar .webix_segment_N.webix_selected:focus{
+    background:#2d4262;
+}
+.webix_toolbar.webix_layout_toolbar .webix_segment_0.webix_selected:active, .webix_toolbar.webix_layout_toolbar .webix_segment_N.webix_selected:active{
+    background:#2d4262;
+}
+
+/* reset button */
+.webix_el_button button{
+    background-color: #f7e29c;
+    color:#2d4262;
+    border:none;
+}
+.webix_el_button button:hover{
+    background-color: #f8e7af;
+    color:#4a5e92;
+}
+.webix_el_button button:focus{
+    background-color: #f7e29c;
+    color:#2d4262;
+}
+
+/* other */
+.webix_list_item.webix_selected, .webix_dtable .webix_cell.webix_row_select {
+    background-color:#f7e29c;
+    color:#222;
+}
+.draft .webix_template .title{
+    color:#2d4262;
+}
