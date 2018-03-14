@@ -4,6 +4,10 @@
 		<!-- webix files -->
 		<link rel="stylesheet" href="https://cdn.webix.com/site/webix.css" type="text/css" charset="utf-8">
 		<script src="https://cdn.webix.com/site/webix.js" type="text/javascript" charset="utf-8"></script>
+		<!-- webix hint files -->
+		<script src="https://webix-hub.github.io/hint-component/codebase/hint.js" type="text/javascript"></script>
+		<link rel="stylesheet" type="text/css" href="https://webix-hub.github.io/hint-component/codebase/hint.css"></link>
+
 
 		<!-- my styles -->
 		<link rel="stylesheet" href="skins/berry_blues.css" title="berryblues" type="text/css" charset="utf-8">
@@ -61,6 +65,25 @@
 				gridColumns:7, gridRows:5,
 				padding:18, margin:18,
 				factory:panelFactory,
+				cells:[
+					{
+						view:"panel",
+						x:1, y:1, dx:2, dy:2, resize:true,
+						icon:"times",
+						body:{
+							rows:[
+								{ type:"header", template:"Sales" },
+								{
+									view:"geochart",
+									chart:{
+										colorAxis:{colors:["red","orange","gold","green","blue","indigo","purple"]}
+									},
+									data:webix.copy(data)
+								}
+							]
+						}
+					}
+				],
 				on:{
 					onChange:function(){
 						var state = this.serialize();
@@ -76,7 +99,7 @@
 						template:"Drag widgets from here",
 					},
 					{
-						view:"list", id:"list", select:true,
+						view:"list", id:"list",
 						width:250,
 						drag:"source", scroll:false,
 						template:"#value# (#dx#x#dy#)",
@@ -96,7 +119,7 @@
 						]
 					},
 					{
-						view:"button", value:"Reset",
+						view:"button", value:"Reset", id:"reset:button",
 						click:function(){
 							$$("grid").clearAll();
 						}
@@ -118,6 +141,24 @@
 				]
 			};
 
+			var hint = {
+				view:"hint",
+				steps:[
+					{
+						title:"Dynamic Webix Dashboard",
+						text:"Drag items from the list to add panels to the dashboard.",
+						el:"list",
+						event:"click"
+					},
+					{
+						title:"Removing panels",
+						text:"Click 'Reset' to remove all the panels.<br>Click 'crosses' on the panels to remove them one by one.",
+						el:"reset:button",
+						event:"click"
+					}
+				]
+			};
+
 			webix.ready(function(){
 				webix.ui({
 					id:"ui", cols:[
@@ -130,6 +171,9 @@
 						}
 					]
 				});
+
+				var tour = webix.ui(hint);
+				setTimeout(function(){tour.start();}, 2000);
 
 				//restoring the state of the grid
 				var state = webix.storage.local.get("dashboard-state");
