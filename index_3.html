@@ -93,7 +93,7 @@
 				{
 					view:"panel",
 					x:2, y:1, dx:4, dy:2, resize:true,
-					header:"visitors",
+					header:"Visitors",
 					body:{
 						view:"chart", type:"bar",
 						data:webix.copy(data), value:"#visitors#",
@@ -163,7 +163,7 @@
 			view:"toolbar", elements:[
 				{ view:"label", template:"<a href='https://webix.com' target='_blank'>Webix Dashboard</a>"},
 				{},
-				{ view:"segmented", id:"themes", width:200, value:"berryblues", options:[
+				{ view:"segmented", id:"themes", width:260, value:"berryblues", options:[
 					{id:"berryblues", value:"Berry Blues"},
 					{id:"cozyevening", value:"Cozy Evening"}
 				], click:function(){

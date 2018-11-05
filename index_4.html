@@ -8,6 +8,8 @@
 		<script src="https://webix-hub.github.io/hint-component/codebase/hint.js" type="text/javascript"></script>
 		<link rel="stylesheet" type="text/css" href="https://webix-hub.github.io/hint-component/codebase/hint.css"></link>
 
+		<!-- Material Design Icons -->
+		<link rel="stylesheet" type="text/css" href="//cdn.materialdesignicons.com/2.7.94/css/materialdesignicons.css">
 
 		<!-- my styles -->
 		<link rel="stylesheet" href="skins/berry_blues.css" title="berryblues" type="text/css" charset="utf-8">
@@ -30,7 +32,7 @@
 			function panelFactory(obj){
 				// common panel structure
 				obj.view = "panel";
-				obj.icon = "times";
+				obj.icon = "mdi mdi-close";
 
 				switch (obj.name){
 					case "visitors_template":
@@ -69,7 +71,7 @@
 					{
 						view:"panel",
 						x:1, y:1, dx:2, dy:2, resize:true,
-						icon:"times",
+						icon:"mdi mdi-close",
 						body:{
 							rows:[
 								{ type:"header", template:"Sales" },
@@ -131,7 +133,7 @@
 				view:"toolbar", elements:[
 					{ view:"label", template:"<a href='https://webix.com' target='_blank'>Webix Dashboard</a>"},
 					{},
-					{ view:"segmented", id:"themes", width:200, value:"berryblues", options:[
+					{ view:"segmented", id:"themes", width:260, value:"berryblues", options:[
 						{id:"berryblues", value:"Berry Blues"},
 						{id:"cozyevening", value:"Cozy Evening"}
 					], click:function(){

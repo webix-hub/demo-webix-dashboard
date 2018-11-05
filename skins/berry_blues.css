@@ -69,9 +69,6 @@
 }
 
 /* other */
-.webix_list_item.webix_selected, .webix_dtable .webix_cell.webix_row_select{
-    background-color:#4d648d;
-}
 .draft .webix_template .title{
     color:#4d648d;
 }
