@@ -1,6 +1,6 @@
 function setTheme(name){
 	var links = document.getElementsByTagName("link");
-		
+
 	for (var i=0; i<links.length; i++){
 
 		var lname = links[i].getAttribute("title");
@@ -12,7 +12,7 @@ function setTheme(name){
 			} else {
 				links[i].disabled = true;
 			}
-		} 
+		}
 	}
 	//remove old css
 	var theme = webix.storage.local.get("theme");

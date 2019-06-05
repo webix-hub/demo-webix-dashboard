@@ -27,17 +27,17 @@
 /* toolbar */
 .webix_toolbar.webix_layout_toolbar{
     background-color:#1e1f26;
-    border-color:#1e1f26;    
+    border-color:#1e1f26;
 }
-.webix_toolbar.webix_layout_toolbar .webix_el_label > a{
+.webix_toolbar.webix_layout_toolbar .webix_el_label .webix_el_box > a{
     color:#d0e1f9;
     text-decoration:none;
 }
-.webix_toolbar.webix_layout_toolbar .webix_el_label > a:hover{
+.webix_toolbar.webix_layout_toolbar .webix_el_label .webix_el_box > a:hover{
     text-decoration:none;
     font-weight:bold;
 }
-.webix_toolbar.webix_layout_toolbar .webix_el_label > a:active{
+.webix_toolbar.webix_layout_toolbar .webix_el_label .webix_el_box > a:active{
     color:rgba(250,250,250,0.4);
 }
 .webix_toolbar.webix_layout_toolbar .webix_segment_0.webix_selected, .webix_toolbar.webix_layout_toolbar .webix_segment_N.webix_selected{
