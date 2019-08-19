@@ -9,8 +9,7 @@
 		<link rel="stylesheet" type="text/css" href="https://webix-hub.github.io/hint-component/codebase/hint.css"></link>
 
 		<!-- Material Design Icons -->
-		<link rel="stylesheet" type="text/css" href="//cdn.materialdesignicons.com/2.7.94/css/materialdesignicons.css">
-
+		<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.7.94/css/materialdesignicons.css?v=6.4.4" type="text/css" charset="utf-8">
 		<!-- my styles -->
 		<link rel="stylesheet" href="skins/berry_blues.css" title="berryblues" type="text/css" charset="utf-8">
 		<link rel="stylesheet" href="skins/cozy_evening.css" title="cozyevening" type="text/css" charset="utf-8">
@@ -192,7 +191,6 @@
 					//if the target is a panel icon, show the confirmation window
 					if (css && css.toString().indexOf("panel_icon") != -1){
 						var view = webix.$$(ev.target);
-						console.log(view);
 						webix.confirm({
 							title:"Remove Panel",
 							ok:"Yes", 
@@ -205,7 +203,6 @@
 						});
 					}
 				});
-
 			});
 		</script>
    	</body>
