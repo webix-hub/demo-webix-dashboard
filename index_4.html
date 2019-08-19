@@ -75,9 +75,13 @@
 							rows:[
 								{ type:"header", template:"Sales" },
 								{
-									view:"geochart",
-									chart:{
-										colorAxis:{colors:["red","orange","gold","green","blue","indigo","purple"]}
+									view:"chart", type:"pie",
+									value :"#sales#",
+									shadow: false,
+									legend: {
+										template:"#code#",
+										align:"right",
+										valign:"middle"
 									},
 									data:webix.copy(data)
 								}
